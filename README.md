@@ -30,7 +30,14 @@ theorem theorem2 {n : ℕ} (hlarge : 2 < n) (hsq : OddPartSquarefull n) :
     n.totient > (n - n.totient).totient
 ```
 
-这份代码只依赖本地的 Mathlib：`/Users/ahs/tools/mathlib4`。
+依赖通过 `lakefile.lean` 声明，Mathlib 以固定 commit 拉取（可复现）：
+
+```text
+require mathlib from git "https://github.com/leanprover-community/mathlib4.git"
+  @ "dec5b2b780537b6eaf7f5e5f000c12f7387fb24d"
+```
+
+克隆后运行 `lake build` 即可（首次会拉取并编译 Mathlib）。
 
 ## Theorem 3：已完成
 
@@ -76,7 +83,7 @@ lake env lean Verification.lean
 `Nat.squarefree_iff_prime_squarefree`。平方素因子反证的写法亦参考了
 [Mathlib 的 Carmichael 数证明](https://github.com/leanprover-community/mathlib4/blob/dec5b2b780537b6eaf7f5e5f000c12f7387fb24d/Mathlib/NumberTheory/CarmichaelNumber.lean#L98-L113)。
 
-环境：Lean v4.35.0-rc2，本地 Mathlib Git 提交
+环境：Lean v4.35.0-rc2，Mathlib 固定于提交
 `dec5b2b780537b6eaf7f5e5f000c12f7387fb24d`。
 ## Theorem 1：已完成
 
